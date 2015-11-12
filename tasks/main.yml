@@ -1,4 +1,5 @@
 ---
+# mysql installation
 - name: set mysql_server_id based on ip address
   set_fact: mysql_server_id={{ ansible_default_ipv4.address|regex_replace("^.{0,3}|[.]") }}
   when: mysql_server_id is not defined
