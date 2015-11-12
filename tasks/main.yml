@@ -1,2 +1,41 @@
 ---
-# tasks file for ansible-localcloud-mysql
+- name: set mysql_server_id based on ip address
+  set_fact: mysql_server_id={{ ansible_default_ipv4.address|regex_replace("^.{0,3}|[.]") }}
+  when: mysql_server_id is not defined
+
+- name: install mysql
+  apt: pkg={{ item }} state=installed
+  register: mysql_install
+  with_items:
+    - python-mysqldb
+    - mysql-server-5.6
+    - mysql-client-5.6
+
+- name: configure mysql
+  template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root group=root mode=0644
+  notify: restart mysql
+
+- name: start and enable
+  service: name=mysql state=started enabled=yes
+
+- name: set root password
+  mysql_user: name=root password="{{ mysql_root_password }}" state=present priv=*.*:ALL,GRANT
+  when: mysql_root_password is defined or mysql_install.changed
+
+  # required to properly update root password
+- name: update password
+  template: src=client_options.j2 dest=~/.my.cnf owner=root group=root mode=0600
+  when: mysql_root_password is defined or mysql_install.changed
+
+- name: enable remote access
+  when: mysql_remote_access is defined
+  with_dict: mysql_remote_access
+  mysql_user:
+    name="{{item.key}}"
+    host="{{item.value.host}}"
+    password="{{item.value.password}}"
+    priv="{{item.value.privileges}}"
+    state=present
+
+- name: open mysql port
+  ufw: rule=allow port=3306 proto=tcp
