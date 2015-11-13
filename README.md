@@ -1,38 +1,42 @@
 localcloud-mysql
 =========
 
-A brief description of the role goes here.
+A simple role to install MySQL on an Ubuntu box. Additionally allows you to override what mysql packages to install so you can choose most recent release available from official repositories.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+This role requires an Ubuntu Box. It was tested on 12 (precise) and 14 (trusty) LTS releases.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role has no dependencies.
+
+
+Role Variables
+--------------
+
+`mysql_root_password` - required. Set your root password. You can also use this setting to update your password.
+
+`mysql_packages` - optional. A list of packages to install for mysql support. Defaults `mysql-server` and `mysql-client` available from official repositories. But you can override this. For example on Ubuntu trusty you can use 'mysql-server-5.6' and 'mysql-client-5.6' packages instead.
+
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yml
+- hosts: servers
+  roles:
+     - localcloud-php
+  vars:
+    mysql_root_password: god
+```
 
 License
 -------
 
-BSD
+MIT
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).

@@ -8,7 +8,6 @@
   apt: pkg={{ item }} state=installed
   register: mysql_install
   with_items:
-    - python-mysqldb
     - mysql-server-5.6
     - mysql-client-5.6
 
