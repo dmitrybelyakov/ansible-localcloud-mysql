@@ -7,9 +7,7 @@
 - name: install mysql
   apt: pkg={{ item }} state=installed
   register: mysql_install
-  with_items:
-    - mysql-server-5.6
-    - mysql-client-5.6
+  with_items: '{{mysql_packages}}'
 
 - name: configure mysql
   template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root group=root mode=0644
