@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Dmitry Belyakov
-  description: This is a simple role to install mysql 5.6 and manage some users. It does nothing else. No replication or table management here.
+  description: This is a simple role to install mysql 5.6 on Ubunto 14 LTS (trusty) and manage some users. It does nothing else. No replication or table management here.
   license: MIT
   min_ansible_version: 1.2
   platforms:
