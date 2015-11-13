@@ -25,7 +25,7 @@
   template: src=client_options.j2 dest=~/.my.cnf owner=root group=root mode=0600
   when: mysql_root_password is defined or mysql_install.changed
 
-- name: enable remote access
+- name: enable users
   when: mysql_remote_access is defined
   with_dict: mysql_users
   mysql_user:
