@@ -7,11 +7,12 @@ mysql_packages:
 #  - mysql-server-5.6
 #  - mysql-client-5.6
 
-mysql_bind_address: 0.0.0.0
+mysql_bind_address: 127.0.0.1
 mysql_port: 3306
-mysql_remote_access: {
+firewall_open: []
+
+mysql_users: {}
 #  username:
 #    host: '%'
-#    password: 'odeyalo26'
+#    password: 'password'
 #    privileges: '*.*:ALL,GRANT'
-}

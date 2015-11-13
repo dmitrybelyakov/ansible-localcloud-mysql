@@ -38,4 +38,6 @@
     state=present
 
 - name: open mysql port
-  ufw: rule=allow port=3306 proto=tcp
+  ufw: rule=allow port={{item}} proto=tcp
+  with_items: "{{firewall_open}}"
+
