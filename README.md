@@ -1,4 +1,4 @@
-Role Name
+localcloud-mysql
 =========
 
 A brief description of the role goes here.
