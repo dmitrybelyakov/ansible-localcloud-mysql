@@ -26,9 +26,9 @@
   when: mysql_root_password is defined or mysql_install.changed
 
 - name: enable users
-  when: mysql_remote_access is defined
+  when: mysql_users is defined
   with_dict: mysql_users
-  mysql_user:
+  mysql_users:
     name="{{item.key}}"
     host="{{item.value.host}}"
     password="{{item.value.password}}"
