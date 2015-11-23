@@ -41,6 +41,7 @@ datadir         = /var/lib/mysql
 tmpdir          = /tmp
 lc-messages-dir = /usr/share/mysql
 skip-external-locking
+skip_name_resolve
 
 {% if not mysql_binary_log %}skip-log-bin{% endif %}
 
