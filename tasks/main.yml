@@ -36,6 +36,6 @@
     state=present
 
 - name: open mysql port
-  ufw: rule=allow port={{item}} proto=tcp
-  with_items: "{{firewall_open}}"
+  ufw: rule=allow port={{mysql_port}} proto=tcp
+  when: mysql_port_open
 

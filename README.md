@@ -25,7 +25,7 @@ Role Variables
 
 `mysql_port` - optional. Port to listen for connections on. Defaults to standard 3306.
 
-`firewall_open` - optional. Whether to open TCP connections to certain ports on the firewall. Disabled by default. This option together with mysql_users allows you to enable remote connections.
+`mysql_firewall_open` - bool, optional. Whether to open TCP connections to certain ports on the firewall. Defaults to False. This option together with mysql_users allows you to enable remote connections.
 
 `mysql_users` - optional. A dictionary of users and their connection credentials and privileges. Use this to create users as well as enable remote access. A simple user definition can look like this:
 
