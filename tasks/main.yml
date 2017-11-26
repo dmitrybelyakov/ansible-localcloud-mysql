@@ -27,7 +27,7 @@
 
 - name: enable users
   when: mysql_users is defined
-  with_dict: mysql_users
+  with_dict: '{{mysql_users}}'
   mysql_user:
     name="{{item.key}}"
     host="{{item.value.host}}"
