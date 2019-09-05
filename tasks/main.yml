@@ -5,9 +5,10 @@
   when: mysql_server_id is not defined
 
 - name: install mysql
-  apt: pkg={{ item }} state=installed
+  apt: 
+    pkg: '{{mysql_packages}}'
+    state: present
   register: mysql_install
-  with_items: '{{mysql_packages}}'
 
 - name: configure mysql
   template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root group=root mode=0644
