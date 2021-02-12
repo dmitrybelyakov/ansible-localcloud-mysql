@@ -47,7 +47,7 @@ Including an example of how to use your role (for instance, with variables passe
 ```yml
 - hosts: servers
   roles:
-     - localcloud-php
+     - localcloud-mysql
   vars:
     mysql_root_password: god
 ```
